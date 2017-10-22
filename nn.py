@@ -21,6 +21,8 @@ for feature in features:
     selected_inds.append(all_features.index(feature))
 #print(selected_inds)
 
+
+
 def get_nearest(phenos, file=None, users=None):
     #print('phenos')
     #print(phenos.shape)
@@ -71,12 +73,15 @@ def get_nearest(phenos, file=None, users=None):
     #print(data.shape)
 
     dist, inds = knc.kneighbors([phenos])
-    #print(inds)
     #inds = inds[:, 1:]
     ppl = full[inds]
+
+    ppl = np.squeeze(ppl, axis=0)
+    inds = np.squeeze(inds, axis=0)
+    print(inds)
     print("Found {} nearest neighbors, using {} features:".format(num_neighbors, num_features))
     #print(ppl)
-    return ppl
+    return inds, ppl
 
 if __name__ == '__main__':
     # examples
@@ -95,5 +100,5 @@ if __name__ == '__main__':
         inp.append(i%4)
     print('input')
     print(inp)
-    nns = get_nearest(np.array(inp), users=arrays)
+    _, nns = get_nearest(np.array(inp), users=arrays)
     print(nns)
