@@ -51,7 +51,7 @@ def get_nearest(phenos, file=None, users=None):
         pheno = np.transpose(pheno)
 
         print('pheno')
-        print(pheno.shape)
+        print(pheno)
         full = pheno
     else:
         return
@@ -71,6 +71,7 @@ def get_nearest(phenos, file=None, users=None):
     print(data.shape)
 
     dist, inds = knc.kneighbors([phenos])
+    print(inds)
     #inds = inds[:, 1:]
     ppl = full[inds]
     print("Found {} nearest neighbors, using {} features:".format(num_neighbors, num_features))
@@ -80,8 +81,6 @@ def get_nearest(phenos, file=None, users=None):
 if __name__ == '__main__':
     # examples
     #get_nearest(range(21), file='data/phenotypes - scores_pseudo_users.csv')
-    inp = list(range(66))
 
-    print(inp)
-    get_nearest(np.array(inp), users=np.array([[i for i in range(66)], [i for i in range(66)]]))
-
+    #get_nearest(np.array(inp), users=np.array([[i+2 for i in range(66)], [i for i in range(66)], [i+1 for i in range(66)]]))
+    get_nearest(np.array([i % 4 for i in range(66)]), users=np.random.randint(0, high=4, size=(2, 66)))
