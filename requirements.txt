@@ -20,7 +20,7 @@ itsdangerous==0.24
 Jinja2==2.9.6
 Markdown==2.6.9
 MarkupSafe==1.0
-numpy==1.13.1
+numpy==1.22.0
 pandas==0.20.3
 pew==0.1.26
 pip-tools==1.9.0
